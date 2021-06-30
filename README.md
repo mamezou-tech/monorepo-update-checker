@@ -79,9 +79,9 @@ jobs:
         uses: mamezou-tech/monorepo-update-checkern@main
         with:
           projectPaths: |
-           "service1:test/service1,test/service1-option"
-           "service2:test/service2"
-           "service3:test/service3"
+            service1:test/service1,test/service1-option
+            service2:test/service2
+            service3:test/service3
       - name: serivce1 processing
       - if: ${{ fromJSON(steps.check.outputs.results).service1 }}
         run: echo execute processing of service1
@@ -123,9 +123,9 @@ jobs:
         uses: mamezou-tech/monorepo-update-checkern@main
         with:
           projectPaths: |
-           "service1:test/service1,test/service1-option"
-           "service2:test/service2"
-           "service3:test/service3"
+            service1:test/service1,test/service1-option
+            service2:test/service2
+            service3:test/service3
       - run: echo ${{toJSON(steps.check.outputs.results)}}
 
   service1:
