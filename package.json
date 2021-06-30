@@ -1,0 +1,35 @@
+{
+  "name": "monorepo-update-checker",
+  "version": "1.0.0",
+  "description": "This action prints \"Hello World\" or \"Hello\" + the name of a person to greet to the log.",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "format": "prettier --write src/**/*.js",
+    "lint": "eslint src/**/*.js",
+    "test": "jest",
+    "fix": "npm run format && npm run lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/actions/monorepo-update-checker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/actions/monorepo-update-checker/issues"
+  },
+  "homepage": "https://github.com/actions/monorepo-update-checker#readme",
+  "dependencies": {
+    "@actions/core": "^1.4.0",
+    "@actions/github": "^1.1.0",
+    "@octokit/rest": "^18.6.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.29.0",
+    "eslint-config-prettier": "^8.3.0",
+    "jest": "^27.0.6",
+    "jest-sonar-reporter": "^2.0.0"
+  }
+}

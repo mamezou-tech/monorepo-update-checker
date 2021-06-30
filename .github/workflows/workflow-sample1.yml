@@ -1,0 +1,26 @@
+name: workflow-sample1
+on:
+  push:
+    branches: [ main ]
+    paths: ['test/service1/**', 'test/service1-option/**', 'test/service2/**', 'test/service3/**']
+jobs:
+  service1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check for update in commit
+        id: check
+        uses: mamezou-tech/monorepo-update-checker@main
+        with:
+          projectPaths: |
+           "service1:test/service1,test/service1-option"
+           "service2:test/service2"
+           "service3:test/service3"
+      - name: serivce1 processing
+        if: ${{ fromJSON(steps.check.outputs.results).service1 }}
+        run: echo execute processing of service1
+      - name: serivce2 processing
+        if: ${{ fromJSON(steps.check.outputs.results).service2 }}
+        run: echo execute processing of service2
+      - name: serivce3 processing
+        if: ${{ fromJSON(steps.check.outputs.results).service3 }}
+        run: echo execute processing of service3

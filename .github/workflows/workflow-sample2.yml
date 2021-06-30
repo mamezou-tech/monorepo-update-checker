@@ -1,0 +1,47 @@
+name: workflow-sample2
+on:
+  push:
+    branches: [ main ]
+    paths: ['test/service1/**', 'test/service1-option/**', 'test/service2/**', 'test/service3/**']
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    outputs:
+      service1-updated: ${{ fromJSON(steps.check.outputs.results).service1 }}
+      service2-updated: ${{ fromJSON(steps.check.outputs.results).service2 }}
+      service3-updated: ${{ fromJSON(steps.check.outputs.results).service3 }}
+    steps:
+      - id: check
+        uses: mamezou-tech/monorepo-update-checker@main
+        with:
+          projectPaths: |
+           "service1:test/service1,test/service1-option"
+           "service2:test/service2"
+           "service3:test/service3"
+      - run: echo ${{ toJSON(steps.check.outputs.results) }}
+
+  service1:
+    env:
+      UPDATED: ${{ needs.check.outputs.service1-updated == 'true' }}
+    runs-on: ubuntu-latest
+    needs: check
+    steps:
+      # JOBs with successors need to be skipped at the level in step to complete the JOB normally
+      - if: ${{ env.UPDATED == 'true' }}
+        run: echo service1 is updated!
+
+  service2:
+    # There is no successor at the end, so there is no problem skipping at the JOB level
+    if: ${{ needs.check.outputs.service2-updated == 'true' }}
+    runs-on: ubuntu-latest
+    needs: check
+    steps:
+      - run: echo ${{needs.check.outputs.service2-updated}}
+
+  service3:
+    # There is no successor at the end, so there is no problem skipping at the JOB level
+    if: ${{ needs.check.outputs.service3-updated == 'true' }} 
+    runs-on: ubuntu-latest
+    needs: [check, service1]
+    steps:
+      - run: echo ${{needs.check.outputs.service3-updated}}

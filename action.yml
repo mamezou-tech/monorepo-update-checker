@@ -1,0 +1,12 @@
+name: 'monorepo update checker'
+description: 'Check for change files in commit for each project directory in monorepo'
+inputs:
+  projectPaths:
+    description: projectName:path1,path2\n...
+    required: true
+outputs:
+  updated:
+    description: 'true if there is a change, false if there is no change'
+runs:
+  using: 'node12'
+  main: 'dist/index.js'

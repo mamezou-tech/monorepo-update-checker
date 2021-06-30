@@ -1,0 +1,18 @@
+name: sample-snippet
+on:
+  workflow_dispatch:
+    branches: main
+  push:
+    branches: main
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check for update in commit
+        id: check
+        uses: mamezou-tech/monorepo-update-checker@main
+        with:
+          projectPaths: |
+            service1:test/service1
+      - name: Get the output result
+        run: echo "The result was ${{ toJSON(steps.check.outputs.results) }}"
