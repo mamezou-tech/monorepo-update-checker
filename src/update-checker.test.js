@@ -67,7 +67,7 @@ test('integration test', async () => {
     owner: 'mamezou-tech',
     repo: 'monorepo-update-checker',
     eventName: 'push',
-    commit_sha: '7ff026ed0fe647ec842470fdab90cad2d4baa16e',
+    commit_sha: 'cfbd313f37b1324115794e27e0e882df5f8d16c1',
   };
 
   const expected = {
@@ -75,7 +75,7 @@ test('integration test', async () => {
     service2: true,
     service3: true,
   };
-  // expect(await checker.check(input)).toEqual(expected);
+  expect(await checker.check(input)).toEqual(expected);
 
   // on workflow_run event test
   input.eventName = 'workflow_run';
