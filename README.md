@@ -1,6 +1,8 @@
 @mamezou-tech/monorepo-update-checker
 ============================
 [![CI](https://github.com/mamezou-tech/monorepo-update-checker/actions/workflows/CI.yml/badge.svg)](https://github.com/mamezou-tech/monorepo-update-checker/actions/workflows/CI.yml)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=mamezou-tech_monorepo-update-checker&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=mamezou-tech_monorepo-update-checker)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=mamezou-tech_monorepo-update-checker&metric=alert_status)](https://sonarcloud.io/dashboard?id=mamezou-tech_monorepo-update-checker)
 
 This action checks the change files for each monorepo project from commit_sha.
  
