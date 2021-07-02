@@ -26,7 +26,7 @@ jobs:
             ${{ runner.os }}-
       - run: npm ci
       - run: npm test -- --coverage --testResultsProcessor=jest-sonar-reporter
-      #- uses: SonarSource/sonarcloud-github-action@master
-      #  env:
-      #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-      #    SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      - uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
